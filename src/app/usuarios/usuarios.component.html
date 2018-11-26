@@ -1,0 +1,68 @@
+<div class="card" *ngIf="!createMode">
+  <div class="card-body">
+    <h1 class="card-title">
+      Usuarios  
+    </h1>
+    <button class="btn btn-primary m-2 " (click)="createUser();">Crear</button>
+    <div class="card-text">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <td>Username</td>
+              <td>Rol</td>             
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let usuario of usuarios' (click)="onSelect(usuario);">
+              <td>{{usuario.username}}</td>
+              <td>{{usuario.roleDescription}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="createMode" class="card">
+  <div class="card-body">
+    <div class="card-title">
+      <h1 class="display-4">Crear Usuario</h1>
+    </div>
+    <div class="card-text">
+
+      <form #form=ngForm (ngSubmit)="onCreateUser();">
+
+          <div class="form-group">
+            id:
+            <input class="form-control" name="id" type="number" [(ngModel)]="nuevoUsuario.id" disabled>
+          </div>
+
+          <div class="form-group">
+            Username:
+            <input type="text" name="username" #username="ngModel" [class.is-valid]="username.valid"
+              [class.is-invalid]="username.invalid" class="form-control" [(ngModel)]="nuevoUsuario.username" required>
+          </div>
+
+          <div class="form-group">
+            password:
+            <input type="text" name="password" #password="ngModel" [class.is-valid]="password.valid"
+              [class.is-invalid]="password.invalid" class="form-control" [(ngModel)]="nuevoUsuario.password" required>
+          </div>
+
+          <div class="form-group">
+            Id:
+            <input type="text" name="roleId" #roleId="ngModel" [class.is-valid]="roleId.valid"
+              [class.is-invalid]="roleId.invalid" class="form-control" [(ngModel)]="nuevoUsuario.roleId" required>
+          </div>
+
+          <button class="btn btn-success" type="submit" [disabled]="!form.valid">Save</button>
+
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<app-detalle-user [usuario]="SelectedUser"></app-detalle-user>

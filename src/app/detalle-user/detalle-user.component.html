@@ -1,0 +1,38 @@
+<br>
+<div *ngIf="usuario" class="card">
+  <div class="card-body">
+      <div class="card-title">
+          <h1 class="display-4">Detalle Usuarios</h1>
+        </div>
+    <div class="card-text">
+      <form #form = ngForm (ngSubmit) = "onEdit();">
+          <div class="form-group">
+              id:
+              <input class="form-control" name="id" type="number" [(ngModel)]="usuario.id" disabled>
+            </div>
+  
+            <div class="form-group">
+              Username:
+              <input type="text" name="username" #username="ngModel" [class.is-valid]="username.valid"
+                [class.is-invalid]="username.invalid" class="form-control" [(ngModel)]="usuario.username" required>
+            </div>
+  
+            <div class="form-group">
+              password:
+              <input type="text" name="password" #password="ngModel" [class.is-valid]="password.valid"
+                [class.is-invalid]="password.invalid" class="form-control" [(ngModel)]="usuario.password" required>
+            </div>
+            <div class="form-group">
+                RolId:
+                <input class="form-control" name="roleId" type="number" [(ngModel)]="usuario.roleId">
+            </div>
+            <div class="form-group">
+              Rol:
+              <input type="text" name="roleDescription" #roleId="ngModel" [class.is-valid]="roleDescription.valid"
+                [class.is-invalid]="roleDescription.invalid" class="form-control" [(ngModel)]="usuario.roleDescription" required>
+            </div>
+         <button class="btn btn-success" type="submit" [disabled] ="!form.valid">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
